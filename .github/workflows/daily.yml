@@ -1,13 +1,11 @@
-name: CI
+name: CI (Daily)
 on:
   workflow_dispatch:
-  pull_request:
-    paths-ignore:
-      - '.vscode'
-      - '*.md'
   push:
     branches:
       - main
+  schedule:
+    - cron: "0 8 * * *"
 jobs:
   ci_check:
     name: Code Check
@@ -15,6 +13,9 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
+
+      - name: Remove pinned version
+        run: rm -f moonbit-version
 
       - name: Setup Moonup
         uses: chawyehsu/setup-moonup@v1
