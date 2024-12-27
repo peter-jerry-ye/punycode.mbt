@@ -3,6 +3,7 @@
 > Punycode encoding and decoding in MoonBit
 
 [![ci][ci-badge]][ci]
+[![ci-daily][ci-daily-badge]][ci-daily]
 [![version-svg]][mooncakes-url]
 [![license][license-badge]](UNLICENSE)
 
@@ -58,7 +59,9 @@ To contribute, it is suggested to use `moonup` to manage the MoonBit toolchain:
 > [Blog](https://chawyehsu.com) · GitHub [@chawyehsu](https://github.com/chawyehsu) · Twitter [@chawyehsu](https://twitter.com/chawyehsu)
 
 [ci-badge]: https://github.com/chawyehsu/punycode.mbt/workflows/CI/badge.svg
+[ci-daily-badge]: https://github.com/chawyehsu/punycode.mbt/actions/workflows/daily.yml/badge.svg
 [ci]: https://github.com/chawyehsu/punycode.mbt/actions/workflows/ci.yml
+[ci-daily]: https://github.com/chawyehsu/punycode.mbt/actions/workflows/daily.yml
 [version-svg]: https://img.shields.io/badge/mooncakes.io-v0.0.3-orange
 [mooncakes-url]: https://mooncakes.io/docs/#/chawyehsu/punycode/
 [license-badge]: https://img.shields.io/github/license/chawyehsu/punycode.mbt
