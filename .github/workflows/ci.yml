@@ -20,4 +20,4 @@ jobs:
         uses: chawyehsu/setup-moonup@v1
 
       - name: Run Tests
-        run: moon test -v
+        run: moon test --target all -v
