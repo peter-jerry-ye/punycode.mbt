@@ -19,5 +19,8 @@ jobs:
       - name: Setup Moonup
         uses: chawyehsu/setup-moonup@v1
 
+      - name: Check Version
+        run: moon version --all
+
       - name: Run Tests
         run: moon test --target all -v

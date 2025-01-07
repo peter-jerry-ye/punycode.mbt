@@ -22,5 +22,8 @@ jobs:
         with:
           moonbit-version: nightly
 
+      - name: Check Version
+        run: moon version --all
+
       - name: Run Tests
         run: moon test --target all -v
