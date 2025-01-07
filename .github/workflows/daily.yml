@@ -1,4 +1,4 @@
-name: CI (Daily)
+name: CI (Nightly)
 on:
   workflow_dispatch:
   push:
@@ -19,6 +19,8 @@ jobs:
 
       - name: Setup Moonup
         uses: chawyehsu/setup-moonup@v1
+        with:
+          moonbit-version: nightly
 
       - name: Run Tests
         run: moon test --target all -v
