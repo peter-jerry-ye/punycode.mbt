@@ -20,7 +20,7 @@ pub fn encode(raw : String) -> String? {
     // let m = the minimum {non-basic} code point >= n in the input
     let mut m = @uint.max_value
     for j = 0U; j < input_lenght; j = j + 1U {
-      let code = raw[j.reinterpret_as_int()].to_int().reinterpret_as_uint()
+      let code = raw[j.reinterpret_as_int()].to_uint()
       if code >= n && code < m {
         m = code
       }
@@ -34,7 +34,7 @@ pub fn encode(raw : String) -> String? {
     n = m
 
     for j = 0U; j < input_lenght; j = j + 1U {
-      let code = raw[j.reinterpret_as_int()].to_int().reinterpret_as_uint()
+      let code = raw[j.reinterpret_as_int()].to_uint()
       if code < n {
         delta += 1
         if delta == 0 {
