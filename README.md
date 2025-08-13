@@ -62,8 +62,8 @@ To contribute, it is suggested to use `moonup` to manage the MoonBit toolchain:
 [ci-daily-badge]: https://github.com/chawyehsu/punycode.mbt/actions/workflows/daily.yml/badge.svg
 [ci]: https://github.com/chawyehsu/punycode.mbt/actions/workflows/ci.yml
 [ci-daily]: https://github.com/chawyehsu/punycode.mbt/actions/workflows/daily.yml
-[version-svg]: https://img.shields.io/badge/mooncakes.io-v0.0.3-orange
-[mooncakes-url]: https://mooncakes.io/docs/#/chawyehsu/punycode/
+[version-svg]: https://img.shields.io/badge/mooncakes.io-v0.0.4-orange
+[mooncakes-url]: https://mooncakes.io/docs/chawyehsu/punycode
 [license-badge]: https://img.shields.io/github/license/chawyehsu/punycode.mbt
 [moonup]: https://github.com/chawyehsu/moonup
 [RFC 3492]: https://datatracker.ietf.org/doc/html/rfc3492
