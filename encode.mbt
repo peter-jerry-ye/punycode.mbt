@@ -1,4 +1,4 @@
-/// Convert a string of Unicode symbols to a Punycode string of ASCII-only symbols.
+///| Convert a string of Unicode symbols to a Punycode string of ASCII-only symbols.
 pub fn encode(raw : String) -> String? {
   // Basic code point segregation, extract ASCII characters that are
   // encoded as-is
@@ -9,11 +9,9 @@ pub fn encode(raw : String) -> String? {
   let mut delta = 0U
   let mut bias = initial_bias
   let mut h = basic_length
-
   if h > 0 {
     encoded.push(delimiter)
   }
-
   let input_lenght = raw.length().reinterpret_as_uint()
   // Main encoding loop
   while h < input_lenght {
@@ -25,14 +23,11 @@ pub fn encode(raw : String) -> String? {
         m = code
       }
     }
-
     if m - n > (@uint.max_value - delta) / (h + 1) {
       return None // Overflow
     }
-
     delta += (m - n) * (h + 1)
     n = m
-
     for j = 0U; j < input_lenght; j = j + 1U {
       let code = raw[j.reinterpret_as_int()].to_uint()
       if code < n {
@@ -41,28 +36,30 @@ pub fn encode(raw : String) -> String? {
           return None // Overflow
         }
       }
-
       if code == n {
         let mut q = delta
         let mut k = base
         for {
-          let t = if k <= bias { tmin } else if k >= bias + tmax { tmax } else { k - bias }
+          let t = if k <= bias {
+            tmin
+          } else if k >= bias + tmax {
+            tmax
+          } else {
+            k - bias
+          }
           if q < t {
             break
           }
-
           encoded.push(encode_digit(t + (q - t) % (base - t)))
           q = (q - t) / (base - t)
           k += base
         }
-
         encoded.push(encode_digit(q))
         bias = adapt(delta, h + 1, h == basic_length)
         delta = 0
         h += 1
       }
     }
-
     delta += 1
     n += 1
   }
@@ -76,10 +73,10 @@ pub fn encode(raw : String) -> String? {
     encoded_str = encoded_str + encoded[i].to_string()
     i += 1
   }
-
   Some(encoded_str)
 }
 
+///|
 fn encode_digit(d : UInt) -> Char {
   if d < 26U {
     Char::from_int(d.reinterpret_as_int() + 97) // a-z

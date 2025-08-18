@@ -1,4 +1,4 @@
-/// Converts a Punycode string of ASCII-only symbols to a string of Unicode symbols.
+///| Converts a Punycode string of ASCII-only symbols to a string of Unicode symbols.
 pub fn decode(encoded : String) -> String? {
   let decoded = []
   let encoded_length = encoded.length().reinterpret_as_uint()
@@ -30,11 +30,9 @@ pub fn decode(encoded : String) -> String? {
     for k = base; ; k = k + base {
       let digit = decode_digit(encoded[idx.reinterpret_as_int()])
       idx += 1
-
       if digit > (@uint.max_value - i) / w {
         return None // Overflow
       }
-
       i += digit * w
       let t = if k <= bias {
         tmin
@@ -43,28 +41,25 @@ pub fn decode(encoded : String) -> String? {
       } else {
         k - bias
       }
-
       if digit < t {
         break
       }
       if w > @uint.max_value / (base - t) {
         return None // Overflow
       }
-
       w *= base - t
     }
-
     let out = decoded.length().reinterpret_as_uint() + 1U
     bias = adapt(i - oldi, out, oldi == 0U)
-
     if i / out > @uint.max_value - n {
       return None // Overflow
     }
-
     n += i / out
     i %= out
-
-    decoded.insert(i.reinterpret_as_int(), Char::from_int(n.reinterpret_as_int()))
+    decoded.insert(
+      i.reinterpret_as_int(),
+      Char::from_int(n.reinterpret_as_int()),
+    )
     i += 1U
   }
 
@@ -77,10 +72,10 @@ pub fn decode(encoded : String) -> String? {
     decoded_str = decoded_str + decoded[i].to_string()
     i += 1
   }
-
   Some(decoded_str)
 }
 
+///|
 fn decode_digit(c : Char) -> UInt {
   let code = c.to_int()
   if code >= 48 && code < 58 {
