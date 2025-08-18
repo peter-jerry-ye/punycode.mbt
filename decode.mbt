@@ -2,10 +2,10 @@
 pub fn decode(encoded : String) -> String? {
   let decoded = []
   let encoded_length = encoded.length().reinterpret_as_uint()
-  let delimiter_idx = encoded.last_index_of(delimiter.to_string())
-  let basic = match delimiter_idx < 0 {
-    true => 0U
-    false => delimiter_idx.reinterpret_as_uint()
+  let delimiter_idx = encoded.rev_find(delimiter.to_string())
+  let basic = match delimiter_idx {
+    None => 0U
+    Some(idx) => idx.reinterpret_as_uint()
   }
   // Basic ASCII code point extraction
   let encoded = encoded.to_array()
@@ -23,7 +23,7 @@ pub fn decode(encoded : String) -> String? {
   let mut i = 0U
   let mut bias = initial_bias
   // Main decoding loop
-  let mut idx = if basic > 0 { basic + 1 } else { 0 }
+  let mut idx = if basic > 0U { basic + 1U } else { 0U }
   while idx < encoded_length {
     let oldi = i
     let mut w = 1U
@@ -58,7 +58,7 @@ pub fn decode(encoded : String) -> String? {
     i %= out
     decoded.insert(
       i.reinterpret_as_int(),
-      Char::from_int(n.reinterpret_as_int()),
+      Int::unsafe_to_char(n.reinterpret_as_int()),
     )
     i += 1U
   }

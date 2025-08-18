@@ -1,4 +1,5 @@
 // RFC3492 test cases
+
 ///|
 test "encode" {
   // Arabic (Egyptian) -> ASCII (Punycode)

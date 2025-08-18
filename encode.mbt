@@ -18,7 +18,7 @@ pub fn encode(raw : String) -> String? {
     // let m = the minimum {non-basic} code point >= n in the input
     let mut m = @uint.max_value
     for j = 0U; j < input_lenght; j = j + 1U {
-      let code = raw[j.reinterpret_as_int()].to_uint()
+      let code = raw[j.reinterpret_as_int()].reinterpret_as_uint()
       if code >= n && code < m {
         m = code
       }
@@ -29,7 +29,7 @@ pub fn encode(raw : String) -> String? {
     delta += (m - n) * (h + 1)
     n = m
     for j = 0U; j < input_lenght; j = j + 1U {
-      let code = raw[j.reinterpret_as_int()].to_uint()
+      let code = raw[j.reinterpret_as_int()].reinterpret_as_uint()
       if code < n {
         delta += 1
         if delta == 0 {
@@ -79,9 +79,9 @@ pub fn encode(raw : String) -> String? {
 ///|
 fn encode_digit(d : UInt) -> Char {
   if d < 26U {
-    Char::from_int(d.reinterpret_as_int() + 97) // a-z
+    Int::unsafe_to_char(d.reinterpret_as_int() + 97) // a-z
   } else if d < 36U {
-    Char::from_int(d.reinterpret_as_int() - 26 + 48) // 0-9
+    Int::unsafe_to_char(d.reinterpret_as_int() - 26 + 48) // 0-9
   } else {
     abort("Invalid digit")
   }
