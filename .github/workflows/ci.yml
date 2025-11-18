@@ -24,3 +24,6 @@ jobs:
 
       - name: Run Tests
         run: moon test --target all -v
+
+      - name: Run Test (Native)
+        run: moon test --target native -v
