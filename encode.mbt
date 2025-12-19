@@ -1,4 +1,5 @@
-///| Convert a string of Unicode symbols to a Punycode string of ASCII-only symbols.
+///|
+/// Convert a string of Unicode symbols to a Punycode string of ASCII-only symbols.
 pub fn encode(raw : String) -> String? {
   // Basic code point segregation, extract ASCII characters that are
   // encoded as-is
@@ -12,7 +13,7 @@ pub fn encode(raw : String) -> String? {
   if h > 0 {
     encoded.push(delimiter)
   }
-  let input_lenght = raw.length().to_uint()
+  let input_lenght = raw.length().reinterpret_as_uint()
   // Main encoding loop
   while h < input_lenght {
     // let m = the minimum {non-basic} code point >= n in the input
